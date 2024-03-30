@@ -24,7 +24,7 @@ Models:
 - **Type 3486254 adapters**: compatible with `thing:3486254`
 - **Custom adapters**: Not compatible with `thing:3486254`, but you don't need adapters for 25mm bases
 
-None of these pieces need supports.
+None of these pieces need supports. This is way the adapters have a missing part on top.
 
 All these adapters are compatible with my bases.
 
@@ -42,12 +42,26 @@ two halves of the handler.
 
 ![](output/adapter_25mm_3486254.png)
 
+The base of the handlers is also compatible with `thing:3486254`. There
+are two versions for this vase:
+
+- **Tight**: fits very tight to the handler, you can use this base to secure
+  the mode. It is round for better comfort when gripped.
+
+![](output/handler_base_tight.png)
+
+- **Normal**: compatible with `thing:3486254`. It has a different shape to
+  distinguish all types. You don't pick this base, it sits on the table
+  while you paint the figures.
+
+![](output/handler_base.png)
+
 
 ## Custom adapters
 
-I created another version that does not need adapters for the 25mm bases and as a result, chaging miniatures is significantly faster.
-
-However, these adapters are not comptible with the handler in thing:3486254
+I created another version that does not need adapters for the 25mm bases and,
+as a result, changing miniatures is significantly faster. However, these adapters
+are not comptible with the handler in thing:3486254
 
 Take into account that primming, weathering and texturing the base
 can make the adapters unusable. An adapter is cheaper and faster to print
@@ -57,18 +71,5 @@ find your creative process is somehow "dirty".
 The custom handler is only compatible with the custom adapters, not the 3486254 type.
 
 ![](output/handler.png)
-
-Two versions for the base handler:
-
-- Tight: fits very tight to the handler, you can use this base to secure
-  the mode. It is round for better comfort when handled.
-
-![](output/handler_base_tight.png)
-
-- Normal: compatible with `thing:3486254`. It has a different shape to
-  distinguish all types. You don't pick this base, it sits on the table
-  while you paint the figures.
-
-![](output/handler_base.png)
 
 This work (C) 2024 by Juan Vera is licensed under CC BY 4.0 
