@@ -8,7 +8,8 @@
 // adapter_type 3486254=compatible with thing:3486254.
 // adapter_type=0. not compatible but you don't need adapters for 25mm bases
 // adapter_type=1 is a variation of 0, better to print without supports
-adapter_type=3486254; 
+adapter_type=3486254;
+adapter_margin=3; // margin of the adapter around the hole for the mini base
 
 base_w=25; // main diameter of the miniature base
 base_w2=0;  // secondary radius for the elliptic miniature base. If 0, it is a circular base
@@ -25,11 +26,12 @@ handler_base_detail=8; // Handler base shape. Use 6, 8 or 50 (hexagon, octogon, 
 // rings and hole
 ring_count=6; // use 0 for no rings
 ring_h=2.5; // magic number! It is an approximation with the usual parameters
-hole_r=3; // radius of the hole for an additional grip. If 0, do not add a hole
+hole_r=2.7; // radius of the hole for an additional grip. If 0, do not add a hole
 
+//////////////////////// BASES
 
 // consolidated version of base_plain with no hole in circular_base.scad
-// You could just include that module, but I want this file to be independent
+// used by adapter_type=0 and 3486254
 module base_plain(base_w) {
     base_upper_r = 11.87;
     base_upper_h = 2;
@@ -44,6 +46,7 @@ module base_plain(base_w) {
         translate([0, 0, 2.11]) cylinder(h=base_upper_h, r=base_upper_r);
     }
 }
+// used by adapter_type=1
 module base_plain_extended(base_w) {
     base_upper_r = 11.87;
     base_upper_h = 2;
@@ -59,6 +62,7 @@ module base_plain_extended(base_w) {
         translate([-25/4, -25, 0]) cube([25/2, 50, base_h+base_upper_h]);
     }
 }
+// used by adapter_type=1, base_w2<>base_w
 module base_horses(base_w, base_w2) {
     base_upper_r = 11.87;
     base_upper_h = 2;
@@ -89,11 +93,10 @@ module adapter_bottom() {
 
 // top part of the adapter
 // tolerance: scale the hole by this amount. 1 is too tight, probably
-module adapter_top(base_w, base_w2, tolerance=1.02, adapter_type=3486254) {
-     // top part of the adapter, whole
+module adapter_top(base_w, base_w2, tolerance=1.01, adapter_margin=3, adapter_type=3486254) {
      difference() {
         difference() { // main body, curved
-            scale([1, 1, 0.5])  sphere(r=base_w/2+3, $fn=50);
+            scale([1, 1, 0.5])  sphere(r=base_w/2+adapter_margin, $fn=50);
             union() { // limits
                 translate([0, 0, base_h-0.15]) cylinder(r=base_w*2, h=base_w/2);
                 translate([0, 0, -(base_h+base_w/2)]) cylinder(r=base_w*2, h=base_w/2);
@@ -117,22 +120,22 @@ module adapter_top(base_w, base_w2, tolerance=1.02, adapter_type=3486254) {
 // base_w2: the secondary diameter of the base, in millimeters. If 0, use base_w
 // adapter_type 1: compatible with https://www.thingiverse.com/thing:3486254
 // adapter_type 2: not comtatible, but they don't need adapters for my 25mm bases
-module adapter(base_w, base_w2, tolerance=1.02, adapter_type=3486254) {
+module adapter(base_w, base_w2, tolerance=1.02, adapter_type=3486254, adapter_margin=3) {
     if(adapter_type==3486254) {
         adapter_bottom();
     } else {
         // the bottom part is always 25mm
         base_plain(25);
     }
-    translate([0, 0, base_h+base_h-0.05]) adapter_top(base_w, base_w2, tolerance=tolerance, adapter_type=adapter_type);
+    translate([0, 0, base_h+base_h-0.05]) adapter_top(base_w, base_w2, tolerance=tolerance, adapter_type=adapter_type, adapter_margin=adapter_margin);
 }
 
 // half adapter
 // base_w: the main diameter of the base, in millimeters
 // base_w2: the secondary diameter of the base, in millimeters. If 0, use base_w
-module half_adapter(base_w, base_w2, tolerance=1.02, adapter_type=1) {
+module half_adapter(base_w, base_w2, tolerance=1.02, adapter_type=1, adapter_margin=3) {
     difference() {
-        rotate([270, 0, 180]) { adapter(base_w, base_w2, tolerance=tolerance, adapter_type=adapter_type); }
+        rotate([270, 0, 180]) { adapter(base_w, base_w2, tolerance=tolerance, adapter_type=adapter_type, adapter_margin=adapter_margin); }
         translate([-base_w*2, -handler_h*1.5, -handler_r*3]) { cube([base_w*4, handler_h*2, handler_r*3]);  }
     }
 }
@@ -143,7 +146,7 @@ module half_adapter(base_w, base_w2, tolerance=1.02, adapter_type=1) {
 // handler_r: main radius of the base
 // tolerance: scale the hole for the mini base by this amount. 1 is too tight, probably
 // additionaty, global handler_base_h is also used to have that part of the handler empty
-module handler(handler_h, handler_r, tolerance=1.02, adapter_type=0) {
+module handler(handler_h, handler_r, tolerance=1.02, adapter_type=1) {
     // bottom part of the handler, compatible with thing:3486254
     intersection() {
         cylinder(r=handler_r, h=handler_base_h, $fn=50);
@@ -164,7 +167,7 @@ module handler(handler_h, handler_r, tolerance=1.02, adapter_type=0) {
         cylinder(r=handler_r*1.5, h=handler_h-handler_base_h, $fn=50); // limits, to clean outside the limits
     }
     // put an adapter on top
-    translate([0, 0, handler_h]) adapter_top(base_w, base_w2, tolerance=tolerance,adapter_type=adapter_type);
+    translate([0, 0, handler_h]) adapter_top(base_w, base_w2, tolerance=tolerance, adapter_type=adapter_type, adapter_margin=3);
 }
 
 module half_handler(handler_h, handler_r, tolerance=1.02, adapter_type=0) {
