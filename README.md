@@ -13,7 +13,7 @@ Unfortunately, it was designed for slim 25x2mm bases. My bases do not fit
 very well, and other base dimensions are out of the question
 
 This is the link to my bases: <https://github.com/Juanvvc/circular-bases>
-And this is their:
+And these are their dimensions:
 
 - Height: 3mm
 - Diameter: 25/32/40/50mm
@@ -30,10 +30,11 @@ Models:
 
 - **Type 3486254 adapters**: compatible with `thing:3486254`. You need
   adapters for every base size, and something to keep both halves of the
-  handler together.
+  handler together. Thingiverse: <https://www.thingiverse.com/thing:6558960>
 - **Custom adapters**: Not compatible with `thing:3486254`, but you
   don't need adapters for many 25mm bases. Not only for my bases, of course,
   but I've also tested many other 25mm bases including GW and some others.
+  Thingiverse: <https://www.thingiverse.com/thing:6558980>
 
 In addition, there are:
 
