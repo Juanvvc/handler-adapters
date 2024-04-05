@@ -25,6 +25,12 @@ IF %BUILD_ADAPTERS_3486254% == 1 (
 %OPENSCAD% -D base_w=30 -D base_w2=50 -D adapter_type=3486254 -D tolerance=1.01 -o output\adapter_30x50mm_3486254.png -q --autocenter handler_adapter.scad
 %OPENSCAD% -D base_w=30 -D base_w2=50 -D adapter_type=3486254 -D tolerance=1.01 -o output\adapter_30x50mm_3486254.stl -q --export-format binstl handler_adapter.scad
 
+%OPENSCAD% -D base_w=25 -D adapter_type=3486254 -D tolerance=1.01 -o output\adapter_25mm_double_3486254.png -q --autocenter handler_adapter_double.scad
+%OPENSCAD% -D base_w=25 -D adapter_type=3486254 -D tolerance=1.01 -o output\adapter_25mm_double_3486254.stl -q --export-format binstl handler_adapter_double.scad
+
+%OPENSCAD% -D base_w=20 -D adapter_type=3486254 -D tolerance=1.01 -o output\adapter_20mm_double_3486254.png -q --autocenter handler_adapter_double.scad
+%OPENSCAD% -D base_w=20 -D adapter_type=3486254 -D tolerance=1.01 -o output\adapter_20mm_double_3486254.stl -q --export-format binstl handler_adapter_double.scad
+
 )
 
 IF %BUILD_ADAPTERS_CUSTOM% == 1 (
@@ -43,6 +49,12 @@ IF %BUILD_ADAPTERS_CUSTOM% == 1 (
 
 %OPENSCAD% -D base_w=30 -D base_w2=50 -D adapter_type=0 -D tolerance=1.01 -o output\adapter_30x50mm.png -q --autocenter handler_adapter.scad
 %OPENSCAD% -D base_w=30 -D base_w2=50 -D adapter_type=0 -D tolerance=1.01 -o output\adapter_30x50mm.stl -q --export-format binstl handler_adapter.scad
+
+%OPENSCAD% -D base_w=25 -D adapter_type=0 -D tolerance=1.01 -o output\adapter_25mm_double.png -q --autocenter handler_adapter_double.scad
+%OPENSCAD% -D base_w=25 -D adapter_type=0 -D tolerance=1.01 -o output\adapter_25mm_double.stl -q --export-format binstl handler_adapter_double.scad
+
+%OPENSCAD% -D base_w=20 -D adapter_type=0 -D tolerance=1.01 -o output\adapter_20mm_double.png -q --autocenter handler_adapter_double.scad
+%OPENSCAD% -D base_w=20 -D adapter_type=0 -D tolerance=1.01 -o output\adapter_20mm_double.stl -q --export-format binstl handler_adapter_double.scad
 
 )
 
